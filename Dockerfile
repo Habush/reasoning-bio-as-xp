@@ -8,7 +8,7 @@ RUN apt-get install -y git ssh cmake libboost-dev guile-2.2-dev cython
 
 #Install cogutil 
 
-RUN git clone https://github.com/opencog/cogutil.git && \
+RUN cd /tmp && git clone https://github.com/opencog/cogutil.git && \
         cd cogutil && \
         mkdir build && \
         cd build && \
@@ -18,7 +18,7 @@ RUN git clone https://github.com/opencog/cogutil.git && \
         ldconfig /usr/local/lib/opencog
 
 #Install atomspace
-RUN git clone https://github.com/ngeiswei/atomspace.git && \
+RUN cd /tmp && git clone https://github.com/ngeiswei/atomspace.git && \
     cd atomspace && git checkout bio-as-xp && \
     mkdir build && \
     cd build && \
@@ -28,7 +28,7 @@ RUN git clone https://github.com/ngeiswei/atomspace.git && \
     ldconfig /usr/local/lib/opencog
 
 #Install URE
-RUN git clone https://github.com/opencog/ure.git && \
+RUN cd /tmp && git clone https://github.com/opencog/ure.git && \
     cd ure && \
     mkdir build && \
     cd build && \
@@ -39,7 +39,7 @@ RUN git clone https://github.com/opencog/ure.git && \
 
 
 #Install pattern miner
-RUN git clone https://github.com/opencog/miner.git && \
+RUN cd /tmp && git clone https://github.com/opencog/miner.git && \
     cd miner && \
     mkdir build && \
     cd build && \
@@ -49,7 +49,7 @@ RUN git clone https://github.com/opencog/miner.git && \
     ldconfig /usr/local/lib/opencog
 
 #Install agi-bio
-RUN git clone https://github.com/opencog/agi-bio.git && \
+RUN cd /tmp && git clone https://github.com/opencog/agi-bio.git && \
     cd agi-bio && \
     mkdir build && \
     cd build && \
@@ -59,7 +59,7 @@ RUN git clone https://github.com/opencog/agi-bio.git && \
     ldconfig /usr/local/lib/opencog
 
 #Install pln
-RUN git clone https://github.com/com:ngeiswei/pln.git && \
+RUN cd /tmp && git clone https://github.com/com:ngeiswei/pln.git && \
     cd pln && \
     mkdir build && \
     cd build && \
@@ -69,3 +69,6 @@ RUN git clone https://github.com/com:ngeiswei/pln.git && \
     ldconfig /usr/local/lib/opencog
 
 
+COPY ./ /opt
+
+WORKDIR /opt

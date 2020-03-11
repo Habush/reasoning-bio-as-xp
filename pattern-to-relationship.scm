@@ -5,11 +5,10 @@
 (define rs 0)                           ; Random seed
 (define ss 1)                         ; Subsampled portion of the KBs
 
-;; Filename containing the mined patterns
-(define mp-filename "results/miner-results-all.scm")
-
 ;; Load modules & utils
 (use-modules (srfi srfi-1))
+(use-modules (opencog))
+(use-modules (opencog exec))
 (use-modules (opencog randgen))
 (use-modules (opencog logger))
 (use-modules (opencog ure))
@@ -17,6 +16,9 @@
 (use-modules (opencog bioscience))
 (use-modules (opencog pln))
 (load "bio-as-utils.scm")
+
+;; Filename containing the mined patterns
+(define mp-filename "results/miner-results-all.scm")
 
 (define log-filename
   (string-append "opencog-pattern-to-relationship"

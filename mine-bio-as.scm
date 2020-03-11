@@ -15,6 +15,18 @@
 (define mv 3)                           ; Maximum number of variables
 (define su 'nisurp)                       ; Surprisingness measure
 
+
+;; Load modules & utils
+(use-modules (srfi srfi-1))
+(use-modules (opencog))
+(use-modules (opencog exec))
+(use-modules (opencog randgen))
+(use-modules (opencog logger))
+(use-modules (opencog ure))
+(use-modules (opencog miner))
+(use-modules (opencog bioscience))
+(load "bio-as-utils.scm")
+
 ;; Define initial pattern. Look for SMP and GO classes that have
 ;; surprisingly common genes.
 (define ip (Lambda
@@ -27,15 +39,6 @@
                (Member (Variable "$Gene") (Variable "$GO"))
                (Inheritance (Variable "$SMP") (Concept "SMP_term"))
                (Inheritance (Variable "$GO") (Concept "GO_term")))))
-
-;; Load modules & utils
-(use-modules (srfi srfi-1))
-(use-modules (opencog randgen))
-(use-modules (opencog logger))
-(use-modules (opencog ure))
-(use-modules (opencog miner))
-(use-modules (opencog bioscience))
-(load "bio-as-utils.scm")
 
 ;; Set random seed
 (cog-randgen-set-seed! rs)

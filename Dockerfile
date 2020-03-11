@@ -59,8 +59,8 @@ RUN cd /tmp && git clone https://github.com/opencog/agi-bio.git && \
     ldconfig /usr/local/lib/opencog
 
 #Install pln
-RUN cd /tmp && git clone https://github.com/com/ngeiswei/pln.git && \
-    cd pln && \
+RUN cd /tmp && git clone https://github.com/ngeiswei/pln.git && \
+    cd pln && git checkout fix-pln-api &&  \
     mkdir build && \
     cd build && \
     cmake .. && \

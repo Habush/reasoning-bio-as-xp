@@ -99,8 +99,10 @@
 (ure-logger-set-filename! log-filename)
 
 ;; Load KBs to reason on
-(define db-lst (load-kbs (list "kbs/GO.scm"
-                               "kbs/GO_annotation.scm")
+(define db-lst (load-kbs (list "kbs/biogrid.scm"
+                               "kbs/gene-go.scm"
+                               "kbs/gene-pathway.scm"
+                               )
                          #:subsmp ss
                          #:filter-out (lambda (x)
                                         (or (GO_term? x)

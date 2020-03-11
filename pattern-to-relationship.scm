@@ -35,9 +35,12 @@
 (ure-logger-set-filename! log-filename)
 
 ;; Load KBs to reason on
-(define db-lst (load-kbs (list "kbs/smpdb_gene.scm"
-                               "kbs/GO.scm"
-                               "kbs/GO_annotation.scm")
+(define db-lst (load-kbs (list "kbs/biogrid.scm"
+                               "kbs/gene-go.scm"
+                               "kbs/gene-pathway.scm"
+                               "kbs/main.scm"
+                               "kbs/mainRNA.scm"
+                               )
                          #:subsmp ss))
 
 (cog-logger-debug "db-lst:\n~a" db-lst)

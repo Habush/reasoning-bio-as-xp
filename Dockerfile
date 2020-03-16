@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y git ssh cmake libboost-all-dev guile-2.2-dev cython
+RUN apt-get install -y git ssh cmake libboost-all-dev guile-2.2-dev cython gdb
 
 #Install cogutil 
 

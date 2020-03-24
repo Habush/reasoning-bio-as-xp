@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y git ssh cmake libboost-all-dev guile-2.2-dev cython gdb
+RUN apt-get install -y git ssh cmake libboost-all-dev guile-3.0-dev cython gdb vim guile-3.0
 
 #Install cogutil 
 
@@ -18,8 +18,8 @@ RUN cd /tmp && git clone https://github.com/opencog/cogutil.git && \
         ldconfig /usr/local/lib/opencog
 
 #Install atomspace
-RUN cd /tmp && git clone https://github.com/ngeiswei/atomspace.git && \
-    cd atomspace && git checkout bio-as-xp && \
+RUN cd /tmp && git clone https://github.com/opencog/atomspace.git && \
+    cd atomspace && \
     mkdir build && \
     cd build && \
     cmake .. && \
@@ -59,8 +59,8 @@ RUN cd /tmp && git clone https://github.com/opencog/agi-bio.git && \
     ldconfig /usr/local/lib/opencog
 
 #Install pln
-RUN cd /tmp && git clone https://github.com/ngeiswei/pln.git && \
-    cd pln && git checkout fix-pln-api &&  \
+RUN cd /tmp && git clone https://github.com/opencog/pln.git && \
+    cd pln &&  \
     mkdir build && \
     cd build && \
     cmake .. && \

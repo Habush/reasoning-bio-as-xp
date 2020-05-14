@@ -4,7 +4,18 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y git ssh cmake libboost-all-dev guile-3.0-dev cython gdb vim guile-3.0
+RUN apt-get install -y git ssh cmake libboost-all-dev cython dh-autoreconf unzip gdb vim
+
+#Install Guile dependecies
+RUN apt-get install -y libgmp-dev libltdl-dev libunistring-dev libffi-dev libgc-dev flex texinfo  libreadline-dev
+
+
+#Install guile-3.x
+RUN cd /tmp && wget https://ftp.gnu.org/gnu/guile/guile-3.0.2.tar.gz  && \
+         tar -xvzf guile-3.0.2.tar.gz && cd guile-3.0.2 && \
+         autoreconf -vif && \
+         ./configure && \
+         make -j4 && make install
 
 #Install cogutil 
 
@@ -67,5 +78,7 @@ RUN cd /tmp && git clone https://github.com/opencog/pln.git && \
     make -j4 && \
     make install && \
     ldconfig /usr/local/lib/opencog
+
+RUN rm -rf /tmp/*
 
 WORKDIR /opt

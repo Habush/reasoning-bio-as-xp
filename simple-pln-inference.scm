@@ -51,7 +51,7 @@
 ;; (cog-logger-debug "aging-db = ~a" aging-db)
 
 ;; Load empty PLN
-(pln-load #:rule-base 'empty)
+(pln-load 'empty)
 
 ;; Definitions
 (define X (Variable "$X"))
@@ -105,7 +105,7 @@
 
 ;; Write results in file
 (define scm-fn (string-append "results/simple-pln-inference" param-str ".scm"))
-(write-atoms-to-file scm-filename (cog-outgoing-set final-results))
+(write-atoms-to-file scm-fn (cog-outgoing-set final-results))
 
 ;; Write trace in file
 (cog-set-atomspace! trace-as)

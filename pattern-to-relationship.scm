@@ -5,6 +5,9 @@
 (define rs 0)                           ; Random seed
 (define ss 1)                         ; Subsampled portion of the KBs
 
+;; Filename containing the mined patterns
+(define mp-filename "results/mine-bio-as-results-jb=1-rs=0-ss=1-mf=0.01-mi=1000-mc=4-mv=3-su=nisurp-ip=e158a724d9149eb9.scm")
+
 ;; Load modules & utils
 (use-modules (srfi srfi-1))
 (use-modules (opencog))
@@ -21,7 +24,7 @@
 (define mp-filename "results/miner-results-all.scm")
 
 (define log-filename
-  (string-append "opencog-pattern-to-relationship"
+  (string-append "log/opencog-pattern-to-relationship"
                  "-rs=" (number->string rs)
                  "-ss=" (number->string ss)
                  "-mp-filename=" (basename mp-filename ".scm")
@@ -62,14 +65,14 @@
 (define all-inhs (append inhs rev-inhs))
 
 ;; Load pln rules of interest
-(pln-load #:rule-base 'empty)
-(pln-add-rule-by-name "inheritance-direct-introduction-rule")
+(pln-load 'empty)
+(pln-add-rule-by-name "subset-direct-introduction-rule")
 
 ;; For each pair infer their inheritances
 (cog-logger-debug "main (cog-atomspace) = ~a" (cog-atomspace))
 (define all-inhs-tv (map gar (map pln-bc all-inhs)))
 
-(write-atoms-to-file "inheritance-links.scm" all-inhs-tv)
+(write-atoms-to-file "results/subset-links.scm" all-inhs-tv)
 
 ;; Get strengths (useful for looking at their distribution, see
 ;; histogram-inheritance-strengths.gp)

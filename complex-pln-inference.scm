@@ -36,12 +36,12 @@
 (ure-logger-set-filename! log-filename)
 
 ;; Load kb restricted to aging
-(define hagr-facts (load-kb "facts/hagr.scm"))
+(define hagr-facts (load-kb "facts/hagr.scm"
+			    #:filter-in member?))
+(cog-logger-debug "hagr-facts = ~a" hagr-facts)
 (define cohesive-facts (load-kb "facts/expression-to-aging-cohesiveness.scm"))
 (define default-mbr-tv (stv 0.95 0.7654321))
 (map (lambda (x) (cog-set-tv! x default-mbr-tv)) hagr-facts)
-
-(cog-logger-debug "hagr-facts = ~a" hagr-facts)
 
 ;; 1. Get all genes related to aging according to hagr
 (define hagr-genes (filter gene? (map gar hagr-facts)))
@@ -74,7 +74,7 @@
 ;;    another gene, then that one relates to aging too.
 
 ;; Load empty PLN 
-(pln-load #:rule-base 'empty)
+(pln-load 'empty)
 
 ;; Definitions
 (define X (Variable "$X"))
